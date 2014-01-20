@@ -1,0 +1,12 @@
+<?php
+
+require_once '../vendor/autoload.php';
+
+$client = new Janrain\Client();
+
+// Adjust your Janrain settings below.
+$client->setOption('base_url',      'YOUR_JANRAIN_BASE_URL');
+$client->setOption('client_id', '    YOUR_JANRAIN_CLIENT_ID');
+$client->setOption('client_secret', 'YOUR_JANRAIN_CLIENT_SECRET');
+
+return $client;
