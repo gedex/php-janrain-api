@@ -59,27 +59,51 @@ class Entity extends AbstractApi
 		return $this->post('entity.count', $params);
 	}
 
-	public function create()
+	public function create(array $params)
 	{
+		if (!isset($params['attributes'])) {
+			throw new MissingArgumentException('attributes');
+		}
 
+		if (!is_array($params['attributes'])) {
+			throw new InvalidArgumentException('Invalid Argument: attributes must be passed as array');
+		}
+		$params['attributes'] = json_encode($params['attributes']);
+
+		return $this->post('entity.create', $params);
 	}
 
-	public function bulkCreate()
+	public function bulkCreate(array $params)
 	{
-		;
+		if (!isset($params['type_name'])) {
+			throw new MissingArgumentException('type_name');
+		}
+
+		if (!isset($params['all_attributes'])) {
+			throw new MissingArgumentException('all_attributes');
+		}
+		if (!is_array($params['all_attributes'])) {
+			throw new InvalidArgumentException('Invalid Argument: all_attributes must be passed as array');
+		}
+		$params['all_attributes'] = json_encode($params['all_attributes']);
+
+		return $this->post('entity.bulkCreate', $params);
 	}
 
 	/**
 	 * Default by UUID.
 	 */
-	public function delete($uuid, array $params)
+	public function delete($uuid, array $params = array())
 	{
 		$params['uuid'] = $uuid;
+		if (!isset($params['type_name'])) {
+			throw new MissingArgumentException('type_name');
+		}
 
 		return $this->_del($params);
 	}
 
-	public function deleteById($id, array $params)
+	public function deleteById($id, array $params = array())
 	{
 		$params['id'] = $id;
 
@@ -102,9 +126,17 @@ class Entity extends AbstractApi
 		return $this->post('entity.delete', $params);
 	}
 
-	public function bulkDelete()
+	public function bulkDelete(array $params)
 	{
+		if (!isset($params['type_name'])) {
+			throw new MissingArgumentException('type_name');
+		}
 
+		if (!isset($params['filter'])) {
+			throw new MissingArgumentException('filter');
+		}
+
+		return $this->post('entity.bulkDelete', $params);
 	}
 
 	public function find(array $params)
@@ -138,22 +170,67 @@ class Entity extends AbstractApi
 		return $this->post('entity.find', $params);
 	}
 
-	public function purge()
+	/**
+	 * @param string $entityType The entityType of entity
+	 * @param bool   $commit     Must be set to true to purge the data
+	 */
+	public function purge($entityType, $commit = false)
 	{
+		$params = array('type_name' => $entityType, 'commit' => $commit);
 
+		return $this->post('entity.purge', $params);
 	}
 
 	/**
 	 * Replace part of an entity by UUID.
 	 */
-	public function replace()
+	public function replace($uuid, array $params)
 	{
+		$params['uuid'] = $uuid;
 
+		return $this->_replace($params);
+	}
+
+	/**
+	 * Replace part of an entity by ID.
+	 */
+	public function replaceById($id, array $params)
+	{
+		$params['id'] = $id;
+
+		return $this->_replace($params);
+	}
+
+	/**
+	 * Replace part of an entity by attribute.
+	 */
+	public function replaceByAttribute($attributeKey, $attributeValue, array $params)
+	{
+		$params['key_attribute'] = $attributeKey;
+		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
+
+		return $this->_replace($params);
 	}
 
 	public function _replace(array $params)
 	{
-		return $this->post('entity.udpate', $params);
+		if (!isset($params['type_name'])) {
+			throw new MissingArgumentException('type_name');
+		}
+
+		if (isset($params['attribute_name'])) {
+			if (!isset($params['value'])) {
+				throw new MissingArgumentException('value');
+			}
+		} else if (isset($params['attributes'])) {
+			if (is_array($params['attributes'])) {
+				$params['attributes'] = json_encode($params['attributes']);
+			}
+		} else {
+			throw new MissingArgumentException('attribute_name with value or attributes');
+		}
+
+		return $this->post('entity.replace', $params);
 	}
 
 	/**
@@ -184,7 +261,7 @@ class Entity extends AbstractApi
 		$params['key_attribute'] = $attributeKey;
 		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
 
-		return $this->_del($params);
+		return $this->_update($params);
 	}
 
 	public function _update(array $params)
