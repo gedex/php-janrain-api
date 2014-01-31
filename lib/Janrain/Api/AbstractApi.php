@@ -10,7 +10,7 @@ use Janrain\HttpClient\Message\ResponseMediator;
  *
  * @author Akeda Bagus <admin@gedex.web.id>
  */
-abstract class AbstractApi implements ApiInterface
+abstract class AbstractApi
 {
 	/**
 	 * The client
@@ -25,13 +25,6 @@ abstract class AbstractApi implements ApiInterface
 	public function __construct(Client $client)
 	{
 		$this->client = $client;
-	}
-
-	protected function get($path, array $parameters = array(), $requestHeaders = array())
-	{
-		$response = $this->client->getHttpClient()->get($path, $parameters, $requestHeaders);
-
-		return ResponseMediator::getContent($response);
 	}
 
 	/**
