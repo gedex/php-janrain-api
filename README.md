@@ -37,16 +37,14 @@ See [doc](doc/README.md) and [examples](examples/README.md) for complete referen
 
 # TODO
 
-* Api\Engage
-* Api\Partner
 * Unit tests
-* doc
 * examples
 * Once unit tests are complete put add .travis.yml
 * Send to packagist
 
 # Credits
 
+* [Janrain API documentation](http://developers.janrain.com/documentation/api/)
 * Nicely architectured library [php-github-api](https://github.com/KnpLabs/php-github-api) by [KNPLabs](https://github.com/KnpLabs) where this library borrows the design.
 
 # License
