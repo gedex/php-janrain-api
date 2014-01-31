@@ -26,11 +26,24 @@ class AuthListener
 		// Prioritize 'access_token' over 'client_id' and 'client_secret'.
 		if ($this->options['access_token']) {
 			$parameters['access_token'] = $this->options['access_token'];
+
+			// Some endpoints expect 'token' instead of 'access_token'.
+			$parameters['token'] = $this->options['access_token'];
 		} else if ($this->options['client_id'] && $this->options['client_secret']) {
 			$parameters['client_id']     = $this->options['client_id'];
 			$parameters['client_secret'] = $this->options['client_secret'];
 		} else {
 			throw new MissingArgumentException(array('access_token', 'client_id', 'client_secret'));
+		}
+
+		// Most Engage API calls need 'apiKey'.
+		if ($this->options['api_key']) {
+			$parameters['apiKey'] = $this->options['api_key'];
+		}
+
+		// Most Partner API calls need 'partnerKey'.
+		if ($this->options['partner_key']) {
+			$paramters['partnerKey'] = $this->options['partner_key'];
 		}
 
 		$url .= (false === strpos($url, '?') ? '?' : '&');

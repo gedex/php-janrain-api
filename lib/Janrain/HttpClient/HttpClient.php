@@ -24,8 +24,10 @@ class HttpClient implements HttpClientInterface
 		'user_agent'    => 'php-janrain-api (https://github.com/gedex/php-janrain-api)',
 		'timeout'       => 15,
 		'access_token'  => '',
+		'api_key'       => '',
 		'client_id'     => '',
-		'client_secret' => ''
+		'client_secret' => '',
+		'partner_key'   => '',
 	);
 
 	protected $headers = array();
