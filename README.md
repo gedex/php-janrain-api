@@ -1,6 +1,9 @@
 PHP Janrain API
 ===============
 
+[![Build Status](https://travis-ci.org/gedex/php-janrain-api.png?branch=master)](https://travis-ci.org/gedex/php-janrain-api)
+[![Coverage Status](https://coveralls.io/repos/gedex/php-janrain-api/badge.png?branch=master)](https://coveralls.io/r/gedex/php-janrain-api?branch=master)
+
 A simple Object Oriented wrapper for [Janrain API](http://developers.janrain.com/documentation/api/), written with PHP5.
 
 # Usage
