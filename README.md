@@ -36,7 +36,7 @@ $result = $client->api('entity')->create(array(
 ));
 ~~~
 
-See [doc](doc/README.md) and [examples](examples/README.md) for complete references.
+See [examples](examples/README.md) for complete references.
 
 # TODO
 
