@@ -18,7 +18,9 @@
 		"guzzle/guzzle": ">=3.8"
 	},
 	"require-dev": {
-		"phpunit/phpunit": ">3.6.0"
+		"phpunit/phpunit": ">3.6.0",
+		"phpunit/phpcov": "2.0.*@dev",
+		"satooshi/php-coveralls": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
