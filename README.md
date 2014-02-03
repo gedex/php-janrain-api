@@ -40,10 +40,8 @@ See [doc](doc/README.md) and [examples](examples/README.md) for complete referen
 
 # TODO
 
-* Unit tests
-* examples
-* Once unit tests are complete put add .travis.yml
-* Send to packagist
+* Complete unit tests coverage
+* More examples
 
 # Credits
 
