@@ -25,11 +25,6 @@ class TestHttpClient implements HttpClientInterface
 		$this->headers = $headers;
 	}
 
-	public function get($path, array $parameters = array(), array $headers = array())
-	{
-		$this->requests['get'][] = $path;
-	}
-
 	public function post($path, $body = null, array $headers = array())
 	{
 		$this->requests['post'][] = $path;

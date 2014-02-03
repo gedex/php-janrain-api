@@ -37,21 +37,6 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function shouldDoGETRequest()
-	{
-		$path       = '/some/path';
-		$parameters = array('a' => 'b');
-		$headers    = array('c' => 'd');
-
-		$client = $this->getBrowserMock();
-
-		$httpClient = new HttpClient(array(), $client);
-		$httpClient->get($path, $parameters, $headers);
-	}
-
-	/**
-	 * @test
-	 */
 	public function shouldDoPOSTRequest()
 	{
 		$path = '/some/path';
