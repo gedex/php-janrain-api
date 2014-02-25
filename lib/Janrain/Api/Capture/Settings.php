@@ -46,7 +46,9 @@ class Settings extends AbstractApi
 	 */
 	public function getMulti(array $keys, $forClientId = null)
 	{
-		$params = json_encode(array_values($keys));
+		$params = array(
+			'keys' => json_encode(array_values($keys)),
+		);
 
 		if ($forClientId) {
 			$params['for_client_id'] = $forClientId;
