@@ -13,7 +13,7 @@ A simple Object Oriented wrapper for [Janrain API](http://developers.janrain.com
 ~~~php
 require_once 'vendor/autoload.php';
 
-$client = Janrain\Client();
+$client = new Janrain\Client();
 $client->setOption('base_url',      'https://example.janraincapture.com');
 $client->setOption('client_id',     'xxx');
 $client->setOption('client_secret', 'xxx');
