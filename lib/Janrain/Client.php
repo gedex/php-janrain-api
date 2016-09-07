@@ -213,7 +213,7 @@ class Client
 	public function setOption($name, $value)
 	{
 		if (!array_key_exists($name, $this->options)) {
-			throw new InvalidArgumentException(spritnf('Undefined option called: "%s"', $name));
+			throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
 		}
 
 		$this->options[$name] = $value;
