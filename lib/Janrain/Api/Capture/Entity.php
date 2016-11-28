@@ -284,6 +284,7 @@ class Entity extends AbstractApi
 
 		return $this->post('entity.update', $params);
 	}
+
 	protected function wrapAttributeValueWithQuotes($attributeValue)
 	{
 		return '"' . $attributeValue . '"'; // String values need to be enclosed in quotes
