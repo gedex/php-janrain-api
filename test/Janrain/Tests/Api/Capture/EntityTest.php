@@ -57,7 +57,7 @@ class EntityTest extends TestCase
 		$api = $this->getApiMock();
 		$api->expects($this->once())
 			->method('post')
-			->with('entity', array('key_attribute' => 'email', 'key_value' => "'user@example.com'", 'type_name' => 'user'))
+			->with('entity', array('key_attribute' => 'email', 'key_value' => '"user@example.com"', 'type_name' => 'user'))
 			->will($this->returnValue($expectedArray));
 
 		$this->assertEquals($expectedArray, $api->viewByAttribute('email', 'user@example.com', array('type_name' => 'user')));
@@ -272,7 +272,7 @@ class EntityTest extends TestCase
 		$api = $this->getApiMock();
 		$api->expects($this->once())
 			->method('post')
-			->with('entity.delete', array('key_attribute' => 'email', 'key_value' => "'user@example.com'", 'type_name' => 'user'))
+			->with('entity.delete', array('key_attribute' => 'email', 'key_value' => '"user@example.com"', 'type_name' => 'user'))
 			->will($this->returnValue($expectedArray));
 
 		$this->assertEquals($expectedArray, $api->deleteByAttribute('email', 'user@example.com', array('type_name' => 'user')));

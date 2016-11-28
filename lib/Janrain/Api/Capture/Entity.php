@@ -28,7 +28,7 @@ class Entity extends AbstractApi
 	public function viewByAttribute($attributeKey, $attributeValue, array $params)
 	{
 		$params['key_attribute'] = $attributeKey;
-		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
+		$params['key_value']     = $this->wrapAttributeValueWithQuotes($attributeValue);
 
 		return $this->_view($params);
 	}
@@ -113,7 +113,7 @@ class Entity extends AbstractApi
 	public function deleteByAttribute($attributeKey, $attributeValue, array $params)
 	{
 		$params['key_attribute'] = $attributeKey;
-		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
+		$params['key_value']     = $this->wrapAttributeValueWithQuotes($attributeValue);
 
 		return $this->_del($params);
 	}
@@ -207,7 +207,7 @@ class Entity extends AbstractApi
 	public function replaceByAttribute($attributeKey, $attributeValue, array $params)
 	{
 		$params['key_attribute'] = $attributeKey;
-		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
+		$params['key_value']     = $this->wrapAttributeValueWithQuotes($attributeValue);
 
 		return $this->_replace($params);
 	}
@@ -259,7 +259,7 @@ class Entity extends AbstractApi
 	public function updateByAttribute($attributeKey, $attributeValue, array $params)
 	{
 		$params['key_attribute'] = $attributeKey;
-		$params['key_value']     = "'{$attributeValue}'"; // String values need to be enclosed in quotes
+		$params['key_value']     = $this->wrapAttributeValueWithQuotes($attributeValue);
 
 		return $this->_update($params);
 	}
@@ -283,5 +283,10 @@ class Entity extends AbstractApi
 		}
 
 		return $this->post('entity.update', $params);
+	}
+
+	protected function wrapAttributeValueWithQuotes($attributeValue)
+	{
+		return '"' . $attributeValue . '"'; // String values need to be enclosed in quotes
 	}
 }
