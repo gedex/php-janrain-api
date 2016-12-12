@@ -14,7 +14,7 @@ class OAuth extends AbstractApi
 
 	public function authNativeTraditional(array $params)
 	{
-		return $this->post('oauth/auth_native_traditional');
+		return $this->post('oauth/auth_native_traditional', $params);
 	}
 
 	public function forgotPasswordNative(array $params)
